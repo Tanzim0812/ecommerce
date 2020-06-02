@@ -1,3 +1,7 @@
+
+
+<!-------------------------------------Header and footer section-----(Connected with:views/website.home)------------------------------------>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en" class="fixed left-sidebar-top">
 
@@ -23,6 +25,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.4/css/responsive.bootstrap.min.css">
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- ========================================================= -->
     <!--Notification msj-->
     <link rel="stylesheet" href="{{asset('files/admin/vendor/toastr/toastr.min.css')}}">
@@ -45,7 +49,7 @@
         <!-- LEFTSIDE header -->
         <div class="leftside-header">
             <div class="logo">
-                <a href="{{route('home')}}" class="on-click">
+                <a href="{{route('admin')}}" class="on-click">
                     <img alt="logo" src="{{asset('files/admin/images/header-logo.png')}}" >
                 </a>
             </div>
@@ -117,7 +121,7 @@
                     <nav>
                         <ul class="nav nav-left-lines" id="main-nav">
                             <!--HOME-->
-                            <li class="{{request()->is('admin') ? 'active-item':'' }} "><a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+                            <li class="{{request()->is('admin') ? 'active-item':'' }} "><a href="{{route('admin')}}"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
 
                             <!--CHARTS-->
                             <li class="has-child-item close-item">
@@ -127,6 +131,16 @@
                                     <li class="{{request()->is('category/manage-category') ? 'active-item':'' }} "> <a href="{{route('manage-category')}}">Manage Category</a></li>
                                     <li><a href=""></a></li>
                                 </ul>
+
+                            </li>
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Group item</span> </a>
+                                <ul class="nav child-nav level-1">
+                                    <li class="{{request()->is('group/add-groupitem') ? 'active-item':'' }} "><a href="{{route('add-groupitem')}}">Add Group item</a></li>
+                                    <li class="{{request()->is('group/manage-groupitem') ? 'active-item':'' }} "> <a href="{{route('manage-groupitem')}}">Manage Group item</a></li>
+                                    <li><a href=""></a></li>
+                                </ul>
+
                             </li>
 
                         </ul>
@@ -143,7 +157,7 @@
                 <!-- leftside content header -->
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-home" aria-hidden="true"></i><a href="{{route('home')}}">Home</a></li>
+                        <li><i class="fa fa-home" aria-hidden="true"></i><a href="{{route('admin')}}">Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -173,6 +187,62 @@
 <!-- ========================================================= -->
 <script src="{{asset('files/admin/javascripts/template-script.min.js')}}"></script>
 <script src="{{asset('files/admin/javascripts/template-init.min.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script>
+    $.validate({
+        lang: 'es'
+    });
+</script>
+
+<script>
+
+    $('body').on('change', '#category_status', function () {
+        var id = $(this).attr('data-id');
+        if (this.checked) {
+            var category_status = 1;
+        } else {
+            var category_status = 0;
+        }
+        $.ajax({
+            url: 'category-status/' + id + '/' + category_status,
+            method: 'get',
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+    });
+
+</script>
+<script>
+    $('body').on('click', '#deleteajax', function () {
+        var id = $(this).attr('data-id');
+        if (confirm('Are you?')) {
+            $.ajax({
+                url: 'category-deleteajax/' + id,
+                method: 'get',
+                data: {id: id},
+                success: function (data) {
+
+                    console.log(data);
+                    setTimeout(function () {
+                        alert('Deleted');
+                        location.reload();
+                        // $('#example').DataTable().ajax.reload();
+                    },1000);
+
+                }
+
+            });
+        }
+    });
+
+
+</script>
+
+
 <!-- SECTION script and examples-->
 <!-- Datatable -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -190,6 +260,9 @@
         new $.fn.dataTable.FixedHeader( table );
     } );
 </script>
+
+
+
 <!-- ========================================================= -->
 <!--Notification msj-->
 <script src="{{asset('files/admin/vendor/toastr/toastr.min.js')}}"></script>

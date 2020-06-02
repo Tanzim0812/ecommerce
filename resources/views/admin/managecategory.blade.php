@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%;border: 1px solid midnightblue">
         <thead class="bg-info">
         <tr>
 
             <th>Category_Name</th>
-            <th>Category_status</th>
             <th>Created at</th>
+            <th>Category_status</th>
             <th>Action</th>
 
 
@@ -19,17 +20,13 @@
         <tr>
 
             <td>{{$row->category_name}}</td>
-            <td>{{$row->category_status == 0 ? 'Inactive':'Active'}}</td>
             <td>{{$row->created_at}}</td>
+            <td><input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="category_status" data-id="{{$row->id}}" {{$row->category_status==1 ? 'checked':''}} ></td>
             <td>
-                @if($row->category_status == 0)
-                    <a href="{{route('active-category',$row->id)}}" class="btn btn-info" title="Active"><i class="fa fa-arrow-up"></i></a>
 
-                @else
-                    <a href="{{route('inactive-category',$row->id)}}" class="btn btn-primary" title="Inactive"><i class="fa fa-arrow-down"></i></a>
-                @endif
-                <a class="btn btn-warning" title="Edit"><i class="fa fa-edit" ></i></a>
-                <a href="{{route('delete-category',$row->id)}}" class="btn btn-danger" title="Delete" onclick="return confirm('Are you sure to Delete it?')"><i class="fa fa-trash"></i></a>
+                <a href="{{route('edit-category',$row->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-edit" ></i></a>
+                <a id="deleteajax" data-id="{{$row->id}}" class="btn btn-danger" title="Delete"><i class="fa fa-trash-o"></i></a>
+
             </td>
 
 
