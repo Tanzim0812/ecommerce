@@ -138,7 +138,8 @@
                                 <ul class="nav child-nav level-1">
                                     <li class="{{request()->is('group/add-groupitem') ? 'active-item':'' }} "><a href="{{route('add-groupitem')}}">Add Group item</a></li>
                                     <li class="{{request()->is('group/manage-groupitem') ? 'active-item':'' }} "> <a href="{{route('manage-groupitem')}}">Manage Group item</a></li>
-                                    <li><a href=""></a></li>
+                                    <li class="{{request()->is('group/manage-subgroupitem','group/add-subgroupitem') ? 'active-item':'' }} "> <a href="{{route('manage-subgroupitem')}}">Manage Sub Group item</a></li>
+
                                 </ul>
 
                             </li>
@@ -207,6 +208,23 @@
         }
         $.ajax({
             url: 'category-status/' + id + '/' + category_status,
+            method: 'get',
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+    });
+
+    $('body').on('change', '#groupitem-status', function () {
+        var id = $(this).attr('data-id');
+        if (this.checked) {
+            var groupitem_status = 1;
+        } else {
+            var groupitem_status = 0;
+        }
+        $.ajax({
+            url: 'groupitem-status/' + id + '/' + groupitem_status,
             method: 'get',
             success: function (result) {
                 console.log(result);

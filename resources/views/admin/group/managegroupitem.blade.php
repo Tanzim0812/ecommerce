@@ -21,12 +21,11 @@
 
                 <td>{{$row->group_name}}</td>
                 <td>{{$row->created_at}}</td>
-                <td><input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="category_status" data-id="{{$row->id}}" {{$row->group_status==1 ? 'checked':''}} ></td>
+                <td><input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" id="groupitem-status" data-id="{{$row->id}}" {{$row->group_status==1 ? 'checked':''}} ></td>
                 <td>
 
-                    <a href="{{route('edit-category',$row->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-edit" ></i></a>
-                    <a id="deleteajax" data-id="{{$row->id}}" class="btn btn-danger" title="Delete"><i class="fa fa-trash-o"></i></a>
-
+                    <a href="{{route('edit-groupitem',$row->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-edit" ></i></a>
+                    <a href="{{route('delete-groupitem',$row->id)}}" onclick="confirm('Are you sure to delete?')" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                 </td>
 
 
