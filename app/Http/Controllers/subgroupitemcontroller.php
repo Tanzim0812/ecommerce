@@ -23,6 +23,13 @@ class subgroupitemcontroller extends Controller
 
         return view('admin.group.add_sub_grp_item',compact('groupitem'));//get SELECT tag value from another table
     }
+
+    public function delete_sub_groupitem($id){
+        $delsubgrpitem=subgroupitem::find($id);
+        $delsubgrpitem->delete();
+        Session::flash('delsubgrpitem','Sub group item deleted');
+        return back();
+    }
     public function save_sub_groupitem(Request $request){
         $savesubgrpitem=new subgroupitem();
         $savesubgrpitem->grp_id=$request->grp_id;

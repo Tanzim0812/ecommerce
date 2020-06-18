@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class groupitem extends Model
+class product extends Model
 {
     public function subgroupitem(){
-        return $this->hasMany(subgroupitem::class,'grp_id');
+        return $this->hasMany(subgroupitem::class,'subgrp_id');
     }
-
 }

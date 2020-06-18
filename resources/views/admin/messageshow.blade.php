@@ -54,3 +54,23 @@
         <strong>{{Session('savesubgrpitem_success')}}</strong>
     </div>
 @endif
+
+@if(Session('delsubgrpitem'))
+    <div class="alert alert-danger text-center" style="width: 50%;height: 50%">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{Session('delsubgrpitem')}}</strong>
+    </div>
+@endif
+
+@if(Session('img_success'))
+    <div class="alert alert-success text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{Session('img_success')}}</strong>
+    </div>
+@endif
+@if(Session('pro_success'))
+    <div class="alert alert-success text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{Session('pro_success')}}</strong>
+    </div>
+@endif

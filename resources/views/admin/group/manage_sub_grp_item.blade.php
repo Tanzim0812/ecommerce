@@ -30,7 +30,7 @@
                 <td>
 
                     <a href="{{route('edit-subgroupitem',$row->id)}}" class="btn btn-warning" title="Edit"><i class="fa fa-edit" ></i></a>
-                    <a href="" onclick="confirm('Are you sure to delete?')" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+                    <a href="{{route('delete-subgroupitem',$row->id)}}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
                 </td>
 
 
@@ -43,7 +43,7 @@
     </table>
 
     <hr>
-    {{$savesubgrpitem[0]}}
+
 </div>
 @endsection
 

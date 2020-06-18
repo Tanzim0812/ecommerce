@@ -144,6 +144,24 @@
 
                             </li>
 
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Slider Image</span> </a>
+                                <ul class="nav child-nav level-1">
+                                    <li class="{{request()->is('group/manage-slider') ? 'active-item':'' }} "><a href="{{route('manage-sliderimage')}}">Manage Slider Image</a></li>
+
+                                </ul>
+
+                            </li>
+
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Product</span> </a>
+                                <ul class="nav child-nav level-1">
+                                    <li class="{{request()->is('productt/add-product') ? 'active-item':'' }} "><a href="{{route('add-product')}}">add product</a></li>
+
+                                </ul>
+
+                            </li>
+
                         </ul>
                     </nav>
                 </div>
@@ -188,9 +206,12 @@
 <!-- ========================================================= -->
 <script src="{{asset('files/admin/javascripts/template-script.min.js')}}"></script>
 <script src="{{asset('files/admin/javascripts/template-init.min.js')}}"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 <script>
     $.validate({
         lang: 'es'
@@ -198,7 +219,7 @@
 </script>
 
 <script>
-
+//change status of category
     $('body').on('change', '#category_status', function () {
         var id = $(this).attr('data-id');
         if (this.checked) {
@@ -215,7 +236,7 @@
         });
 
     });
-
+//change status of groupitem
     $('body').on('change', '#groupitem-status', function () {
         var id = $(this).attr('data-id');
         if (this.checked) {
@@ -235,29 +256,42 @@
 
 </script>
 <script>
-    $('body').on('click', '#deleteajax', function () {
-        var id = $(this).attr('data-id');
-        if (confirm('Are you?')) {
-            $.ajax({
-                url: 'category-deleteajax/' + id,
-                method: 'get',
-                data: {id: id},
-                success: function (data) {
+    /*  $('body').on('click', '#deleteajax', function () {
+          var id = $(this).attr('data-id');
+          if (confirm('Are you?')) {
+              $.ajax({
+                  url: 'category-deleteajax/' + id,
+                  method: 'get',
+                  data: {id: id},
+                  success: function (data) {
 
-                    console.log(data);
-                    setTimeout(function () {
-                        alert('Deleted');
-                        location.reload();
-                        // $('#example').DataTable().ajax.reload();
-                    },1000);
+                      console.log(data);
+                      setTimeout(function () {
+                          alert('Deleted');
+                          location.reload();
+                          // $('#example').DataTable().ajax.reload();
+                      },1000);
 
-                }
+                  }
 
-            });
-        }
-    });
+              });
+          }
+      });
+      */
 
+</script>
 
+<script>
+    //javascript function to get subgroupitem from groupitem with holding there id.
+    $(document).ready(function(){
+        $("#grouptime").change(function(){
+            // alert($(this).val())
+            var id=$(this).val()            //get the `id` of groupname
+            $(".subgrpitem-option").hide()  //keep all the subgrpitem hide
+            $(`.group${id}`).show()         //just show the `subgrp_name`,`id` based on parent `id`
+
+        })
+    })
 </script>
 
 

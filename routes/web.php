@@ -6,10 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/','sitecontroller@home')->name('home');
-Route::get('/product','sitecontroller@product')->name('product');
+Route::get('/product/{id}','sitecontroller@product')->name('product');
+//Route::get('/productnew/{id}','sitecontroller@productnew')->name('productnew');
+Route::get('/subgroup/{id}','sitecontroller@subgroup')->name('subgroup');
 
 
 Auth::routes();
+Route::middleware(['auth'])->group(function (){
+
+
 
 Route::get('/admin', 'HomeController@index')->name('admin');
 //category
@@ -24,6 +29,14 @@ Route::get('/category/category-status/{id}/{category_status}','categorycontrolle
 Route::get('/category/category-deleteajax/{id}','categorycontroller@categorydeleteajax')->name('category-deleteajax');
 Route::get('/category/edit-category/{id}','categorycontroller@editcategory')->name('edit-category');
 Route::post('/category/update-category','categorycontroller@updatecategory')->name('update-category');
+
+//slider image
+Route::get('/group/add-slider','sliderimagecontroller@addsliderimage')->name('add-sliderimage');
+Route::get('/group/manage-slider','sliderimagecontroller@managesliderimage')->name('manage-sliderimage');
+Route::post('/group/save-slider','sliderimagecontroller@savesliderimage')->name('save-sliderimage');
+Route::get('/group/delete-slider/{id}','sliderimagecontroller@deletesliderimage')->name('delete-sliderimage');
+
+
 
 //// Group_Item_controller
 Route::get('/group/add-groupitem','groupitemcontroller@addgroupitem')->name('add-groupitem');
@@ -45,3 +58,15 @@ Route::get('/group/edit-subgroupitem/{id}','subgroupitemcontroller@edit_sub_grou
 Route::post('/group/update-subgroupitem','subgroupitemcontroller@update_sub_groupitem')->name('update-subgroupitem');
 
 Route::get('/group/manage-subgroupitem','subgroupitemcontroller@manage_sub_groupitem')->name('manage-subgroupitem');
+Route::get('/group/delete-subgroupitem/{id}','subgroupitemcontroller@delete_sub_groupitem')->name('delete-subgroupitem');
+
+//product
+Route::get('/productt/manage-product','productcontroller@manage_product')->name('manage-product');
+
+Route::get('/productt/add-product','productcontroller@add_product')->name('add-product');
+//    Route::get('/product/add-product',function(){return "ok";})->name('add-product');
+
+Route::post('/productt/save-product','productcontroller@save_product')->name('save-product');
+Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
+
+});

@@ -21,6 +21,7 @@ class groupitemcontroller extends Controller
     }
     public function managegroupitem(){
         $groupitem=groupitem::orderBy('id','ASC')->get();
+
         return view('admin.group.managegroupitem',compact('groupitem'));
     }
     public function editgroupitem($id){
