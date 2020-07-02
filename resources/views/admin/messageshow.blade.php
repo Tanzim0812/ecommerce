@@ -74,3 +74,10 @@
         <strong>{{Session('pro_success')}}</strong>
     </div>
 @endif
+@if(Session('cart'))
+    <div class="alert alert-success text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{Session('cart')}}</strong>
+    </div>
+@endif
+

@@ -10,6 +10,15 @@ Route::get('/product/{id}','sitecontroller@product')->name('product');
 //Route::get('/productnew/{id}','sitecontroller@productnew')->name('productnew');
 Route::get('/subgroup/{id}','sitecontroller@subgroup')->name('subgroup');
 
+Route::get('/cart','Cartcontroller@index')->name('cart');
+Route::post('/save_cart','Cartcontroller@store')->name('cart-store');
+Route::post('/update_cart/{id}','Cartcontroller@update')->name('cart-update');
+Route::get('/delete_cart/{id}','Cartcontroller@destroy')->name('cart-delete');
+
+Route::get('/checkout','checkoutcontroller@index')->name('checkout');
+
+Route::post('/save-order','ordercontroller@store')->name('save_orderr');
+
 
 Auth::routes();
 Route::middleware(['auth'])->group(function (){
@@ -67,6 +76,9 @@ Route::get('/productt/add-product','productcontroller@add_product')->name('add-p
 //    Route::get('/product/add-product',function(){return "ok";})->name('add-product');
 
 Route::post('/productt/save-product','productcontroller@save_product')->name('save-product');
-Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
+Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
+Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
+
+
 
 });

@@ -73,7 +73,7 @@
                                     <div id="owl-single-product">
                                         @foreach($products as $row)
                                         <div class="single-product-gallery-item" id="slide1">
-                                            <a data-lightbox="image-1" data-title="Gallery" href="{{asset('files/website/images/products/p8.jpg')}}">
+                                            <a data-lightbox="image-1" data-title="Gallery" href="{{asset('files/uploads/'.$row->image)}}">
                                                 <img class="img-responsive" alt="" src="{{asset('files/uploads/'.$row->image)}}" data-echo="{{asset('files/uploads/'.$row->image)}}" />
                                             </a>
                                         </div><!-- /.single-product-gallery-item -->
@@ -101,8 +101,8 @@
 
                                             <div class="col-sm-6">
                                                 <div class="price-box">
-                                                    <span class="price">{{$row->offer_price}}</span>
-                                                    <span class="price-strike">{{$row->previous_price}}</span>
+                                                    <span class="price">৳ {{$row->offer_price}}</span>
+                                                    <span class="price-strike">৳ {{$row->previous_price}}</span>
                                                 </div>
                                             </div>
                                             @endforeach
@@ -572,7 +572,7 @@
 
 
 
-    </body>
-    </html>
+
+
 
 @endsection

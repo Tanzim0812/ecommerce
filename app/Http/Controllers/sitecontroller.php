@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\groupitem;
 use App\product;
+use App\shippingcost;
 use App\sliderimage;
 use App\subgroupitem;
 use Illuminate\Http\Request;
@@ -40,5 +41,6 @@ public function product($id){
         return view('website.subgroup',compact('subgroup'));
 
     }
+
 
 }

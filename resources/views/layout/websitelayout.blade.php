@@ -64,7 +64,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
                     <!-- ============================================================= LOGO ============================================================= -->
                     <div class="logo">
-                        <a href="home.html">
+                        <a href="{{route('home')}}">
 
                             <img src="{{asset('files/website/images/logo.png')}}" alt="">
 
@@ -104,32 +104,34 @@
                     <!-- ============================================================= SEARCH AREA : END ============================================================= -->				</div><!-- /.top-search-holder -->
 
                 <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
+
                     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
                     <div class="dropdown dropdown-cart">
-                        <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+
+                        <a href="{{route('cart')}}" class="dropdown-toggle lnk-cart">
                             <div class="items-cart-inner">
                                 <div class="basket">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>
                                 </div>
-                                <div class="basket-item-count"><span class="count">2</span></div>
+                                <div class="basket-item-count"><span class="count">{{\App\cart::totalitems()}}</span></div>
                                 <div class="total-price-basket">
-                                    <span class="lbl">cart -</span>
-                                    <span class="total-price">
+                                    <span class="lbl">cart </span>
+                                    <!--<span class="total-price">
 						<span class="sign">$</span><span class="value">600.00</span>
-					</span>
+					</span>-->
                                 </div>
 
 
                             </div>
                         </a>
-                        <ul class="dropdown-menu">
+                     <!--   <ul class="dropdown-menu">
                             <li>
                                 <div class="cart-item product-summary">
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <div class="image">
-                                                <a href="detail.html"><img src="{{asset('files/website/images/cart.jpg')}}" alt=""></a>
+                                                <a href="detail.html"><img src="{//{asset('files/website/images/cart.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="col-xs-7">
@@ -141,7 +143,7 @@
                                             <a href="#"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
-                                </div><!-- /.cart-item -->
+                                </div> /.cart-item
                                 <div class="clearfix"></div>
                                 <hr>
 
@@ -154,11 +156,13 @@
                                     <div class="clearfix"></div>
 
                                     <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
-                                </div><!-- /.cart-total-->
+                                </div><-- /.cart-total->
 
 
                             </li>
-                        </ul><!-- /.dropdown-menu-->
+                        </ul> -->
+
+                        <!-- /.dropdown-menu-->
                     </div><!-- /.dropdown-cart -->
 
                     <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->				</div><!-- /.top-cart-row -->
@@ -185,12 +189,12 @@
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
                                 <li class="active dropdown yamm-fw">
-                                    <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
 
                                 </li>
 
                                 <li class="dropdown yamm mega-menu">
-                                    <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown"></a>
+                                    <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown"></a>
                                     <ul class="dropdown-menu container">
                                         <li>
                                             <div class="yamm-content ">
@@ -198,7 +202,7 @@
 
                                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
 
-                                                        <ul class="links">)
+                                                        <ul class="links">
                                                             <li><a href=""></a></li>
 
 
@@ -432,6 +436,26 @@
 <script src="{{asset('files/website/js/wow.min.js')}}"></script>
 <script src="{{asset('files/website/js/scripts.js')}}"></script>
 
+<script>
+    //javascript function to get subgroupitem from groupitem with holding there id.
+    $(document).ready(function(){
+        $(".total-option").hide()
+
+    })
+
+    function totalcost(){
+        var e = document.getElementById("divison");
+        var fair = e.options[e.selectedIndex].value;
+        var cost =  document.getElementById("cart_cost").innerText
+        document.getElementById("delivery_charge").innerText = fair
+
+        // alert( parseFloat(fair) + parseFloat(cost) )
+        var result  = parseFloat(fair) + parseFloat(cost)
+        var result2  = parseFloat(fair) + parseFloat(cost)
+        document.getElementById("total_cost").innerHTML = result
+        //document.getElementById("total_cost11").innerText = result2
+    }
+</script>
 
 </body>
 

@@ -17,7 +17,7 @@ div #discountshow {
     background-color: red;
     animation: example 5s infinite;
     padding: 2px;
-    margin:auto;
+
 }
 
 @keyframes example {
@@ -204,7 +204,7 @@ img[src="assets/images/blank.gif"] {
   padding-top: 40px;
 }
 .inner-top-vs {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 .inner-bottom {
   padding-bottom: 120px;
@@ -5504,7 +5504,8 @@ age-container #owl-main .owl-next {
 }
 .product-comparison .compare-table tr td .product .product-image .image a {
   display: block;
-  text-align: left;
+  text-align: center;
+
 }
 .product-comparison .compare-table tr td .product-price .price {
   font-size: 16px;
@@ -5518,6 +5519,8 @@ age-container #owl-main .owl-next {
   font-weight: 400;
   line-height: 30px;
   text-decoration: line-through;
+    float: right;
+    margin-right: 5px;
 }
 .product-comparison .compare-table tr td .text {
   font-size: 14px;
@@ -5827,7 +5830,25 @@ z-index:10000
 
 
 }
+.flex-container {
+    display: flex;
+    padding: 10px;
+    margin: auto;
+    height: 100%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: DodgerBlue;
+}
 
+.flex-container > div {
+    background-color: #f1f1f1;
+    width: 340px;
+    height:340px ;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+}
 /*===================================================================================*/
 /*  Testimonials
 /*===================================================================================*/
