@@ -18,10 +18,19 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('ip_address')->nullable();
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->integer('phone');
             $table->string('email')->nullable();
-            $table->string('shipping_add');
+            $table->string('shipping_cost');
+            $table->string('total_price');
+            $table->string('last_cost');
+            $table->string('district');
+            $table->string('upazilla');
+            $table->string('full_address');
+            $table->string('postal_code');
             $table->text('message')->nullable();
+            $table->string('payment_method');
+            $table->string('trx_id')->nullable();
             $table->tinyInteger('is_paid')->default('0');
             $table->tinyInteger('is_completed')->default('0');
             $table->timestamps();
@@ -29,6 +38,11 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->
             references('id')->
             on('users')->
+            onDelete('cascade');
+
+            $table->foreign('payment_id')->
+            references('id')->
+            on('payments')->
             onDelete('cascade');
 
         });

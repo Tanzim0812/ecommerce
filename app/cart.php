@@ -29,11 +29,11 @@ class cart extends Model
 
     public static function totalcarts(){
         if (Auth::check()){
-            $cart = cart::orWhere('user_id', Auth::id())
-                ->orWhere('ip_address',request()->ip())
+            $cart = cart::Where('user_id', Auth::id())
+                ->Where('order_id',NULL)
                 ->get();
         }else{
-            $cart = cart::orWhere('ip_address',request()->ip())->get();
+            $cart = cart::Where('ip_address',request()->ip())->Where('order_id',NULL)->get();
         }
 
         return $cart;
@@ -42,11 +42,11 @@ class cart extends Model
 
     public static function totalitems(){
         if (Auth::check()){
-            $cart = cart::orWhere('user_id', Auth::id())
-                ->orWhere('ip_address',request()->ip())
+            $cart = cart::Where('user_id', Auth::id())
+                ->Where('order_id',NULL)
                 ->get();
         }else{
-            $cart = cart::orWhere('ip_address',request()->ip())->get();
+            $cart = cart::Where('ip_address',request()->ip())->Where('order_id',NULL)->get();
         }
         $totalitem=0;
        foreach ($cart as $cr) {

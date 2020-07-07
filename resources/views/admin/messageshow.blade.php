@@ -80,4 +80,10 @@
         <strong>{{Session('cart')}}</strong>
     </div>
 @endif
+@if(Session('sticky_error'))
+<div class="alert alert-danger text-center">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>{{Session('sticky_error')}}</strong>
+</div>
+@endif
 

@@ -162,6 +162,15 @@
 
                             </li>
 
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Payment</span> </a>
+                                <ul class="nav child-nav level-1">
+                                    <li class="{{request()->is('payment') ? 'active-item':'' }} "><a href="{{route('payment')}}">payment</a></li>
+
+                                </ul>
+
+                            </li>
+
                         </ul>
                     </nav>
                 </div>

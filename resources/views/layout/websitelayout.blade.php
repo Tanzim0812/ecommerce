@@ -400,11 +400,11 @@
             <div class="col-xs-12 col-sm-6 no-padding">
                 <div class="clearfix payment-methods">
                     <ul>
-                        <li><img src="{{asset('files/website/images/payments/1.png')}}" alt=""></li>
-                        <li><img src="{{asset('files/website/images/payments/2.png')}}" alt=""></li>
-                        <li><img src="{{asset('files/website/images/payments/3.png')}}" alt=""></li>
+                        <li><img src="{{asset('files/website/images/payments/bkash.png')}}" alt=""></li>
+                        <li><img src="{{asset('files/website/images/payments/rocket.png')}}" alt=""></li>
+                        <li><img src="{{asset('files/website/images/payments/nagad.png')}}" alt=""></li>
                         <li><img src="{{asset('files/website/images/payments/4.png')}}" alt=""></li>
-                        <li><img src="{{asset('files/website/images/payments/5.png')}}" alt=""></li>
+                        <li><img src="{{asset('files/website/images/payments/3.png')}}" alt=""></li>
                     </ul>
                 </div><!-- /.payment-methods -->
             </div>
@@ -453,8 +453,67 @@
         var result  = parseFloat(fair) + parseFloat(cost)
         var result2  = parseFloat(fair) + parseFloat(cost)
         document.getElementById("total_cost").innerHTML = result
-        //document.getElementById("total_cost11").innerText = result2
+        document.getElementById("total_cost11").innerText = result2
     }
+</script>
+<script>
+
+    $('#paymentt').change(function () {
+        $pay=$('#paymentt').val()
+        if ($pay == '0'){
+            $('#payment-cash_in').addClass('hidden');
+            $('#bks').addClass('hidden');
+            $('#payment-bkash').addClass('hidden');
+            $('#payment-rocket').addClass('hidden');
+            $('#payment-nagad').addClass('hidden');
+            $('#trx_id').addClass('hidden');
+        }
+        if ($pay == 'cash_in'){
+            $('#payment-cash_in').removeClass('hidden');
+            $('#bks').addClass('hidden');
+            $('#trx_id').addClass('hidden');
+            $('#payment-bkash').addClass('hidden');
+            $('#payment-rocket').addClass('hidden');
+            $('#payment-nagad').addClass('hidden');
+        }
+        if($pay == 'bkash')
+        {
+            $('#payment-bkash').removeClass('hidden');
+            $('#trx_id').removeClass('hidden');
+            $('#bks').removeClass('hidden');
+
+            //$('#rkt').addClass('hidden');
+            //$('#ngd').addClass('hidden');
+            $('#payment-cash_in').addClass('hidden');
+            $('#payment-rocket').addClass('hidden');
+            $('#payment-nagad').addClass('hidden');
+        }
+        if($pay == 'rocket')
+        {
+            $('#payment-rocket').removeClass('hidden');
+            $('#trx_id').removeClass('hidden');
+            //$('#rkt').removeClass('hidden');
+
+            $('#bks').removeClass('hidden');
+            //$('#ngd').addClass('hidden');
+            $('#payment-bkash').addClass('hidden');
+            $('#payment-cash_in').addClass('hidden');
+            $('#payment-nagad').addClass('hidden');
+        }
+        if($pay == 'nagad')
+        {
+            $('#payment-nagad').removeClass('hidden');
+            $('#trx_id').removeClass('hidden');
+            //$('#ngd').removeClass('hidden');
+
+            $('#bks').removeClass('hidden');
+            //$('#rkt').addClass('hidden');
+            $('#payment-bkash').addClass('hidden');
+            $('#payment-cash_in').addClass('hidden');
+            $('#payment-rocket').addClass('hidden');
+        }
+        //$('#paymentdiv').removeClass('hidden');
+    })
 </script>
 
 </body>

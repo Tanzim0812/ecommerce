@@ -4,7 +4,7 @@
 
 
     <!-- ============================================== HEADER : END ============================================== -->
-<div class="breadcrumb">
+    <div class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
@@ -13,8 +13,8 @@
                 </ul>
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
-</div><!-- /.breadcrumb -->
-<div class="body-content outer-top-xs">
+    </div><!-- /.breadcrumb -->
+    <div class="body-content outer-top-xs">
         <div class="container">
             @include('admin.messageshow')
             <div class="row ">
@@ -35,26 +35,26 @@
                                     </thead><!-- /thead -->
                                     <tbody>
                                     @php
-                                    //ekhan theke ami $total_price variable ta dhorsi
-                                        $total_price=0;
+                                        //ekhan theke ami $total_price variable ta dhorsi
+                                            $total_price=0;
                                     @endphp
 
                                     @foreach(\App\cart::totalcarts() as $cart)
-                                    <tr>
-                                        <td>{{$loop->index+1}}</td>
-                                        <td class="cart-image">
-                                            <a class="entry-thumbnail" href="{{asset('files/uploads/'.$cart->product->image)}}" target="_blank">
-                                                <img style="width: 50px;height: 50px" src="{{asset('files/uploads/'.$cart->product->image)}}" alt="">
-                                            </a>
-                                        </td>
-                                        <td>{{$cart->product->title}}</td>
-                                        <td>{{$cart->product_qty}}</td>
+                                        <tr>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td class="cart-image">
+                                                <a class="entry-thumbnail" href="{{asset('files/uploads/'.$cart->product->image)}}" target="_blank">
+                                                    <img style="width: 50px;height: 50px" src="{{asset('files/uploads/'.$cart->product->image)}}" alt="">
+                                                </a>
+                                            </td>
+                                            <td>{{$cart->product->title}}</td>
+                                            <td>{{$cart->product_qty}}</td>
 
-                                        <td>{{$cart->product_qty*$cart->product->offer_price}}</td>
-                                        @php
-                                            $total_price += ($cart->product_qty)*($cart->product->offer_price);
-                                        @endphp
-                                    </tr>
+                                            <td>{{$cart->product_qty*$cart->product->offer_price}}</td>
+                                            @php
+                                                $total_price += ($cart->product_qty)*($cart->product->offer_price);
+                                            @endphp
+                                        </tr>
 
                                     @endforeach
                                     </tbody>
@@ -86,7 +86,16 @@
 
                                                 </span>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="info-title control-label">Division <span>*</span></label>
+                                                <select onchange="totalcost()" class="form-control unicase-form-control selectpicker" name="shipping_cost" id="divison" >
+                                                    <option value="0">--Select Division--</option>
+                                                    @foreach(\App\shippingcost::cost() as $co)
+                                                        <option value="{{$co->cost}}">{{$co->place}}</option>
+                                                    @endforeach
+                                                </select>
 
+                                            </div>
                                         </th>
                                     </tr>
                                     </thead><!-- /thead -->
@@ -111,7 +120,7 @@
 
                         </div>
 
-                <!-------- address confirmation form------->
+                        <!-------- address confirmation form------->
 
                         <div class="col-md-6 col-lg-6">
                             <div class="estimate-ship-tax">
@@ -127,10 +136,10 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <form class="form-group" method="post" action="{{route('check-store')}}">
+                                            <form class="form-group" method="post" action="{{route('save_orderr')}}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <input type="hidden" name="total_price" value="{{$total_price}}" required>
+                                                    <input type="hidden" name="total_price" value="{{$total_price}}" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Name <span>*</span></label>
@@ -145,84 +154,70 @@
                                                     <label class="info-title control-label">Email </label>
                                                     <input type="email" name="email" class="form-control unicase-form-control text-input" value="{{ Auth::check() ? Auth::user()->email : ''}}">
                                                 </div>
-                                            <div class="form-group">
-                                                <label class="info-title control-label">Division <span>*</span></label>
-                                                <select onchange="totalcost()" class="form-control unicase-form-control selectpicker" name="shipping_cost" id="divison" >
-                                                    <option value="0">--Select Division--</option>
-                                                    @foreach(\App\shippingcost::cost() as $co)
-                                                        <option value="{{$co->cost}}">{{$co->place}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <div class="form-group">
+                                                    <label class="info-title control-label">Division <span>*</span></label>
+                                                    <select onchange="totalcost()" class="form-control unicase-form-control selectpicker" name="shipping_cost" id="divison" >
+                                                        <option value="0">--Select Division--</option>
+                                                        @foreach(\App\shippingcost::cost() as $co)
+                                                            <option value="{{$co->cost}}">{{$co->place}}</option>
+                                                        @endforeach
+                                                    </select>
 
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="info-title control-label">District <span>*</span></label>
-                                                <input type="text" name="district" class="form-control unicase-form-control text-input">
-                                                @error('district')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title control-label">District <span>*</span></label>
+                                                    <input type="text" name="district" class="form-control unicase-form-control text-input">
+                                                    @error('district')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Upazilla / Thana <span>*</span></label>
-                                                    <input type="text" name="upazilla" class="form-control unicase-form-control text-input">
+                                                    <input type="text" name="upazilla" class="form-control unicase-form-control text-input" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Full address <span>*</span></label>
                                                     <input type="text" name="full_address" class="form-control unicase-form-control text-input" >
                                                 </div>
 
-                                            <div class="form-group">
-                                                <label class="info-title control-label">Zip/Postal Code</label>
-                                                <input type="text" name="postal_code" class="form-control unicase-form-control text-input" placeholder="">
-                                            </div>
+                                                <div class="form-group">
+                                                    <label class="info-title control-label">Zip/Postal Code</label>
+                                                    <input type="text" name="postal_code" class="form-control unicase-form-control text-input" placeholder="">
+                                                </div>
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Payment Method <span>*</span></label>
-                                                    <select class="form-control unicase-form-control selectpicker" name="payment_method" id="paymentt" required >
+                                                    <select class="form-control unicase-form-control selectpicker" name="payment_method" id="paymentt" >
                                                         <option value="0">--Select Payment Method--</option>
                                                         @foreach($payments as $row)
                                                             <option value="{{$row->shortname}}">{{$row->name}}</option>
                                                         @endforeach
                                                     </select>
 
-                                                @foreach($payments as $row)
-                                                    <div>
-                                                        @if($row->shortname == 'cash_in')
-                                                            <div id="payment-{{$row->shortname}}" class="hidden">
-                                                                <h4>You will get your product in few days</h4>
-                                                                <img class="img-responsive" src="{{asset('files/uploads/'.$row->image)}}" style="height: 100px;width: 300px">
-
-                                                            </div>
-                                                        @else
-                                                            <div id="payment-{{$row->shortname}}" class="hidden">
-                                                                <h4>Payment Type : {{$row->name}}</h4>
-                                                                <img class="img-responsive" src="{{asset('files/uploads/'.$row->image)}}" style="height: 220px;width: 500px">
-                                                                <div class="alert alert-success" >
-                                                                    <h4>&#9755 Type <b>{{$row->dial_code}}</b>
-                                                                        <br>&#9755 Select <b> {{$row->des}}</b> option
-                                                                        <br>&#9755 Send the <u style="color: #3D3D3D">Total amount</u> to <b>{{$row->number}}</b>
-                                                                        <br>&#9755 You will get a <i>transaction ID on return message</i>
-                                                                        <br>&#9755 Type the transaction Id here</h4>
+                                                    @foreach($payments as $row)
+                                                        <div>
+                                                            @if($row->shortname == 'cash_in')
+                                                                <div id="payment-{{$row->shortname}}" class="hidden">
+                                                                    <h4>You will get your product in few days</h4>
                                                                 </div>
+                                                            @else
+                                                                <div id="payment-{{$row->shortname}}" class="hidden">
+                                                                    <h4>Payment Type : {{$row->name}}</h4>
+                                                                    Number : <b>{{$row->number}}</b>
+                                                                    <input type="text" name="trx_id" class="form-control unicase-form-control text-input" placeholder="Transaction Id">
                                                                 </div>
-
-                                                        @endif
-                                                    </div>
-                                                @endforeach
-                                                    <div class="alert alert-success hidden" id="bks">
-                                                        <h5><u style="color: #3D3D3D">Total amount</u> you have to pay </h5><b>
-                                                        <span id="total_cost11"> {{$total_price}}</span> Tk.</b>
-                                                    </div>
-                                                    <input type="text" name="trx_id" id="trx_id" class="form-control unicase-form-control text-input hidden" placeholder="Transaction Id">
+                                                            @endif
+                                                        </div>
+                                                    @endforeach
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Message</label>
                                                     <textarea class="form-control unicase-form-control text-input" name="message"></textarea>
                                                 </div>
-                                            <div class="pull-right">
-                                                <button class="btn btn-primary" type="submit">Submit</button>
-                                            </div>
+                                                <div class="pull-right">
+                                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                                </div>
                                             </form>
                                         </td>
 
@@ -236,5 +231,6 @@
             </div>
         </div>
 
-</div>
+    </div>
 @endsection
+

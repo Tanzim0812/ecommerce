@@ -17,7 +17,9 @@ Route::get('/delete_cart/{id}','Cartcontroller@destroy')->name('cart-delete');
 
 Route::get('/checkout','checkoutcontroller@index')->name('checkout');
 
-Route::post('/save-order','ordercontroller@store')->name('save_orderr');
+Route::post('/save-order','checkoutcontroller@store')->name('check-store');
+
+//Route::get('/checkout-done','ordercontroller@index')->name('checkoutdone');
 
 
 Auth::routes();
@@ -79,6 +81,7 @@ Route::post('/productt/save-product','productcontroller@save_product')->name('sa
 Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
 Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
 
-
+Route::get('/payment','paymentcontroller@index')->name('payment');
+Route::post('/payment/save-payment','paymentcontroller@store')->name('save-payment');
 
 });

@@ -11,6 +11,7 @@
                     @endforeach
                 </ul>
             </div><!-- /.breadcrumb-inner -->
+            @include('admin.messageshow')
         </div><!-- /.container -->
     </div><!-- /.breadcrumb -->
 
@@ -88,11 +89,11 @@
                             </div><!-- /.gallery-holder -->
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
-                                    @foreach($products as $row)
-                                    <h1 class="name">{{$row->title}}</h1>
+                                    @foreach($products as $pro)
+                                    <h1 class="name">{{$pro->title}}</h1>
 
                                     <div class="description-container m-t-20">
-                                        {{$row->sub_title}}
+                                        {{$pro->sub_title}}
                                     </div><!-- /.description-container -->
 
                                     <div class="price-container info-container m-t-20">
@@ -101,11 +102,11 @@
 
                                             <div class="col-sm-6">
                                                 <div class="price-box">
-                                                    <span class="price">৳ {{$row->offer_price}}</span>
-                                                    <span class="price-strike">৳ {{$row->previous_price}}</span>
+                                                    <span class="price">৳ {{$pro->offer_price}}</span>
+                                                    <span class="price-strike">৳ {{$pro->previous_price}}</span>
                                                 </div>
                                             </div>
-                                            @endforeach
+
 
 
 
@@ -115,30 +116,14 @@
                                     <div class="quantity-container info-container">
                                         <div class="row">
 
-                                            <div class="col-sm-2">
-                                                <span class="label">Qty :</span>
-                                            </div>
-
-                                            <div class="col-sm-2">
-                                                <div class="cart-quantity">
-                                                    <div class="quant-input">
-                                                        <div class="arrows">
-                                                            <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                            <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                                                        </div>
-                                                        <input type="text" value="1">
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <div class="col-sm-7">
-                                                <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+                                            @include('layout.cart')
                                             </div>
 
 
                                         </div><!-- /.row -->
                                     </div><!-- /.quantity-container -->
-
+                                    @endforeach
 
 
 

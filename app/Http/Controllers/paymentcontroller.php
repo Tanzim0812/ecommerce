@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\order;
-use App\shippingcost;
+use App\payments;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Session;
 
-class ordercontroller extends Controller
+class paymentcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class ordercontroller extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.payment');
     }
 
     /**
@@ -37,6 +36,26 @@ class ordercontroller extends Controller
      */
     public function store(Request $request)
     {
+        $save= new payments();
+        $save->name=$request->name;
+        $save->shortname=$request->shortname;
+        $save->number=$request->number;
+        $save->type=$request->type;
+
+        if ($request->hasFile('image')){
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $filename=time(). '.'. $extension;
+            $file->move('files/uploads/',$filename);
+            $save->image= $filename;
+
+        }else{
+            return $request;
+            $save ->image= '';
+        }
+        $save->save();
+        Session::flash('add_success','Success');
+        return back();
 
     }
 

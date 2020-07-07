@@ -48,22 +48,23 @@ class Cartcontroller extends Controller
         if (!is_null($cart)) {
             $cart->increment('product_qty');
         }
-//if the desired item in not in the cart then do this...
+//if the desired item is not in the cart then do this...
         else {
             $cart = new cart();
             if (Auth::check()) {
                 $cart->user_id = Auth::id();
             }else{
             $cart->ip_address = request()->ip();
+            }
             $cart->product_id = $request->product_id;
 
-            }
+
             //dd($cart);
             $cart->save();
 
         }
         Session::flash('cart', 'Product is added to Cart');
-        return back();
+       return back();
     }
 
     /**
