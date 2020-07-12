@@ -86,4 +86,9 @@
     <strong>{{Session('sticky_error')}}</strong>
 </div>
 @endif
-
+@if(Session('delete'))
+    <div class="alert alert-danger text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{Session('delete')}}</strong>
+    </div>
+@endif

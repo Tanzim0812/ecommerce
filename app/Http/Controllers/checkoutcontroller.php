@@ -41,8 +41,10 @@ class checkoutcontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            //'district' => 'required',
-            //'payment_method' => 'required'
+
+            'district' => 'required',
+            'payment_method' => 'required',
+            'phone' => 'required|regex:/(01)[0-9]{9}/',
 
         ]);
 

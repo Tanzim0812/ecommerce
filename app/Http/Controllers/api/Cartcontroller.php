@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\order;
+namespace App\Http\Controllers\api;
+
 use App\cart;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\product;
-use Session;
 
 class Cartcontroller extends Controller
 {
@@ -17,11 +16,18 @@ class Cartcontroller extends Controller
      */
     public function index()
     {
-     return view('website.cart');
-
+        //
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,7 +60,7 @@ class Cartcontroller extends Controller
             if (Auth::check()) {
                 $cart->user_id = Auth::id();
             }else{
-            $cart->ip_address = request()->ip();
+                $cart->ip_address = request()->ip();
             }
             $cart->product_id = $request->product_id;
 
@@ -63,8 +69,9 @@ class Cartcontroller extends Controller
             $cart->save();
 
         }
-        Session::flash('cart', 'Product is added to Cart');
-       return back();
+        return json_encode([ 'status' => 'success','Message' => 'Item added to cart','totalitems'=>cart::totalitems()
+
+        ]);
     }
 
     /**
@@ -78,7 +85,16 @@ class Cartcontroller extends Controller
         //
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -89,20 +105,8 @@ class Cartcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $cart=cart::find($id);
-        if (!is_null($cart)) {
-            $cart->product_qty = $request->product_qty;
-
-            $cart->save();
-            dd($cart);
-        }else{
-            return redirect()->route('cart');
-        }
-        Session::flash('cart', 'Cart is updated!!');
-        return back();
+        //
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -112,14 +116,6 @@ class Cartcontroller extends Controller
      */
     public function destroy($id)
     {
-        $cart=cart::find($id);
-        if (!is_null($cart)) {
-            $cart->delete();
-            //dd($cart);
-        }else{
-            return redirect()->route('cart');
-        }
-        Session::flash('cart', 'Cart is Deleted!');
-        return back();
+        //
     }
 }

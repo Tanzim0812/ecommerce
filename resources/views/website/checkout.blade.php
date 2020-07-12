@@ -139,7 +139,9 @@
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Phone <span>*</span></label>
                                                     <input type="tel" name="phone" class="form-control unicase-form-control text-input" value="{{Auth::check() ? Auth::user()->phone : ''}}" >
-
+                                                    @error('phone')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="info-title control-label">Email </label>

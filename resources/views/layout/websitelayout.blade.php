@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Flipmart premium HTML5 & CSS3 Template</title>
 
     <!-- Bootstrap Core CSS -->
@@ -114,7 +114,8 @@
                                 <div class="basket">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>
                                 </div>
-                                <div class="basket-item-count"><span class="count">{{\App\cart::totalitems()}}</span></div>
+
+                                <div class="basket-item-count"><span class="count" id="">{{\App\cart::totalitems()}}</span></div>
                                 <div class="total-price-basket">
                                     <span class="lbl">cart </span>
                                     <!--<span class="total-price">
@@ -420,6 +421,8 @@
 <!-- For demo purposes – can be removed on production : End -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
+
+
 <script src="{{asset('files/website/js/jquery-1.11.1.min.js')}}"></script>
 
 <script src="{{asset('files/website/js/bootstrap.min.js')}}"></script>
@@ -515,6 +518,31 @@
         //$('#paymentdiv').removeClass('hidden');
     })
 </script>
+<script>
+   /* $.ajaxSetup({
+        headers:
+            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+
+    function addtocart(product_id) {
+        //alert(product_id)
+
+        $.post( "",
+            {
+                product_id: product_id
+
+            })
+            .done(function( data ) {
+                data = json.parse(data);
+                if (data.status == 'success'){
+                    $('#totalitems').html(data.totalitems);
+
+                }
+
+            });
+    }*/
+</script>
+
 
 </body>
 

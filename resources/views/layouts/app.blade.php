@@ -165,10 +165,16 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Payment</span> </a>
                                 <ul class="nav child-nav level-1">
-                                    <li class="{{request()->is('payment') ? 'active-item':'' }} "><a href="{{route('payment')}}">payment</a></li>
+                                    <li class="{{request()->is('/payment') ? 'active-item':'' }} "><a href="{{route('payment')}}">payment</a></li>
 
                                 </ul>
 
+                            </li>
+                            <li class="has-child-item close-item">
+                                <a><i class="fa fa-list-alt" aria-hidden="true"></i><span>Order</span> </a>
+                                <ul class="nav child-nav level-1">
+                                    <li class="{{request()->is('/order') ? 'active-item':'' }} "><a href="{{route('order')}}">Manage Order</a></li>
+                                </ul>
                             </li>
 
                         </ul>
@@ -303,6 +309,51 @@
     })
 </script>
 
+<script>
+
+    // function foo(arg){
+    //     // alert(arg)
+    //     console.log(arg)
+    //     $.get(`/order-show/${arg}`,function(data){
+    //         console.log(data.data.name)
+    //         $("#dist23").val(data.data.name)
+    //
+    //         $('#modal-btn').click()
+    //     })
+    // }
+
+    function moda(id) {
+        //alert(id)
+        $.ajax({
+            url: '/order-show/' + id ,
+            method: 'get',
+            success: function (data) {
+                console.log(data);
+
+
+                $("#nam").html(data.data.name)
+                $("#phn").html(data.data.phone)
+                $("#eml").html(data.data.email)
+                $("#dis").html(data.data.district)
+                $("#upz").html(data.data.upazilla)
+                $("#fulladd").html(data.data.full_address)
+                $("#postalcode").html(data.data.postal_code)
+                $("#ttlcost").html(data.data.total_price)
+                $("#dcost").html(data.data.shipping_cost)
+                $("#lastcost").html(data.data.last_cost)
+                $("#paymethod").html(data.data.payment_method)
+                $("#trxid").html(data.data.trx_id)
+                $("#msg").html(data.data.message)
+                $("#dat").html(data.data.created_at)
+
+
+
+
+
+            }
+        });
+    }
+</script>
 
 <!-- SECTION script and examples-->
 <!-- Datatable -->

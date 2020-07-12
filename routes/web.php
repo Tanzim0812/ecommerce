@@ -81,7 +81,19 @@ Route::post('/productt/save-product','productcontroller@save_product')->name('sa
 Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
 Route::get('/productt/findProductName','productcontroller@findProductName')->name('findProductName');
 
+//payment
 Route::get('/payment','paymentcontroller@index')->name('payment');
 Route::post('/payment/save-payment','paymentcontroller@store')->name('save-payment');
 
+//order
+Route::get('/order','ordercontroller@index')->name('order');
+Route::post('/order/save','ordercontroller@store')->name('order-store');
+Route::get('/order-show/{id}','ordercontroller@show')->name('order-show');
+Route::get('/order-showw/{id}','ordercontroller@showw')->name('order-showw');
+Route::post('/update-order/{id}','ordercontroller@update')->name('update-order');
+Route::post('/update-order-admin/{id}','ordercontroller@updateadmin')->name('update-order-admin');
+Route::get('/delete-order/{id}','ordercontroller@destroy')->name('delete-order');
+Route::get('/delete-order-admin/{id}','ordercontroller@destroyadmin')->name('delete-order-admin');
+
+Route::get('/pdf-invoice/{id}','ordercontroller@pdf')->name('pdf-invoice');
 });
